@@ -68,7 +68,7 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const App = () => {
-  const [isLogged, setIsLogged] = useState(false);
+  const [isLogged, setIsLogged] = useState(true);
   const location = useLocation();
 
   function LocationSwitcher() {
@@ -91,10 +91,21 @@ const App = () => {
       return <Login />;
     }
   }
+  function DisableLoginComponent() {
+    if (isLogged === true && window.location.pathname === "/logowanie") {
+      return window.location.replace("/");
+    } else if (
+      isLogged === true &&
+      window.location.pathname === "/rejestracja"
+    ) {
+      return window.location.replace("/");
+    }
+  }
 
   return (
     <>
       {LocationSwitcher()}
+      {DisableLoginComponent()}
       <GlobalStyle />
       <Helmet>
         <meta charSet="utf-8" />
