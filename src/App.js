@@ -50,6 +50,11 @@ const GlobalStyle = createGlobalStyle`
     height: 100vh;
     width: 100vw;
     position: relative;
+    background: linear-gradient(
+      322deg,
+      rgba(232, 215, 255, 0.5) 0%,
+      rgba(227, 205, 255, 0.25) 100%
+    );
   }
 
   ::selection {
