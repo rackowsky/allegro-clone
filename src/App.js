@@ -73,7 +73,7 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const App = () => {
-  const [isLogged, setIsLogged] = useState(true);
+  const [isLogged, setIsLogged] = useState(false);
   const location = useLocation();
 
   function LocationSwitcher() {
