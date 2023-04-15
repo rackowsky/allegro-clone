@@ -9,7 +9,7 @@ const WholeAuctionsWrapper = styled.div`
   );
   border: 2px solid rgba(255, 255, 255, 0.5);
   border-radius: 15px;
-  margin: 14px 16px 5px 16px;
+  margin: 14px 16px 15px 16px;
   height: auto;
   width: auto;
   position: relative;
@@ -27,9 +27,9 @@ const Header = styled.h1`
 const AuctionWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+
   margin-top: 20px;
-  gap: 10px;
+  gap: 12px 17px;
 `;
 const AuctionItem = styled(Link)`
   width: 152px;
