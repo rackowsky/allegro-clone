@@ -18,6 +18,10 @@
       "name": "npm install --save --legacy-peer-deps",
       "command": "npm install --save --legacy-peer-deps",
       "runAtStart": true
+    },
+    "npm run start": {
+      "name": "npm run start",
+      "command": "npm run start"
     }
   }
 }

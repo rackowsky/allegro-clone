@@ -1,5 +1,7 @@
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { json, Link } from "react-router-dom";
 import styled from "styled-components";
+import axios from "axios";
 
 const WholeAuctionsWrapper = styled.div`
   background: linear-gradient(
@@ -228,16 +230,40 @@ const tempData = [
 ];
 
 const WholeAuctions = () => {
+  const [auctions, getAuctions] = useState("");
+
+  useEffect(() => {
+    getAuctionsData();
+  }, []);
+
+  const getAuctionsData = () => {
+    axios({
+      method: "get",
+      url: "https://op5l66-3000.csb.app/auctions",
+      mode: "no-cors", // Ustawienie trybu "no-cors"
+    })
+      .then((response) => {
+        const allAuctions = response.data;
+        getAuctions(allAuctions);
+      })
+      .catch((err) => console.error("Error: ", err));
+  };
+
   return (
     <WholeAuctionsWrapper>
       <Header>Wszystkie aukcje</Header>
       <AuctionWrapper>
-        {tempData.map((item) => {
+        <h1>test</h1>
+        {console.log("test" + JSON.stringify(auctions))}
+        {auctions.map((item) => {
+          return <p key={item.id}>{item.title}</p>;
+        })}
+        {/* {auctions.map((item) => {
           return (
-            <AuctionItem to={item.id.toString()}>
+            <AuctionItem key={item.id.toString()} to={item.id.toString()}>
               <AuctionThumbnail />
               <AutcionItemBody>
-                <p>Wygasa za: {item.expiresIn}</p>
+                <p>Wygasa za: item.expiresIn</p>
                 <div>
                   <h1>{item.title}</h1>
                   <span
@@ -247,19 +273,19 @@ const WholeAuctions = () => {
                       alignItems: "center",
                     }}
                   >
-                    <p>{item.user}</p>
+                    <p>item.user</p>
                     <BreakBullet />
-                    <p>{item.category}</p>
+                    <p>item.category</p>
                   </span>
                 </div>
                 <div>
                   <h2>Aktualna cena</h2>
-                  <h3>{item.price}</h3>
+                  <h3>{item.price} zł</h3>
                 </div>
               </AutcionItemBody>
             </AuctionItem>
           );
-        })}
+        })} */}
       </AuctionWrapper>
     </WholeAuctionsWrapper>
   );
