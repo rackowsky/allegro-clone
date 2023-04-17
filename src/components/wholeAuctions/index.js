@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { json, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
 
@@ -230,7 +230,7 @@ const tempData = [
 ];
 
 const WholeAuctions = () => {
-  const [auctions, getAuctions] = useState("");
+  const [auctions, getAuctions] = useState([]);
 
   useEffect(() => {
     getAuctionsData();
@@ -240,7 +240,7 @@ const WholeAuctions = () => {
     axios({
       method: "get",
       url: "https://op5l66-3000.csb.app/auctions",
-      mode: "no-cors", // Ustawienie trybu "no-cors"
+      mode: "no-cors",
     })
       .then((response) => {
         const allAuctions = response.data;
@@ -253,12 +253,7 @@ const WholeAuctions = () => {
     <WholeAuctionsWrapper>
       <Header>Wszystkie aukcje</Header>
       <AuctionWrapper>
-        <h1>test</h1>
-        {console.log("test" + JSON.stringify(auctions))}
         {auctions.map((item) => {
-          return <p key={item.id}>{item.title}</p>;
-        })}
-        {/* {auctions.map((item) => {
           return (
             <AuctionItem key={item.id.toString()} to={item.id.toString()}>
               <AuctionThumbnail />
@@ -275,7 +270,7 @@ const WholeAuctions = () => {
                   >
                     <p>item.user</p>
                     <BreakBullet />
-                    <p>item.category</p>
+                    <p>{item.category}</p>
                   </span>
                 </div>
                 <div>
@@ -285,7 +280,7 @@ const WholeAuctions = () => {
               </AutcionItemBody>
             </AuctionItem>
           );
-        })} */}
+        })}
       </AuctionWrapper>
     </WholeAuctionsWrapper>
   );
